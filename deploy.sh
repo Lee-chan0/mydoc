@@ -4,7 +4,7 @@
 # 헬스 체크를 수행
 # 헬스 체크가 성공하면 Nginx 설정을 변경하고 재시작.
 # 이전 컨테이너를 중지.
-CURRENT=$(docker ps --format '{{.Names}}' | grep -E 'finalcicd-(blue|green)-[0-9]+' | head -n 1 | cut -d'-' -f2)
+CURRENT=$(docker ps --format '{{.Names}}' | grep -oE 'finalcicd_(blue|green)_1' | head -n 1 | cut -d'_' -f2)
 
 echo "Current container: $CURRENT"
 
@@ -15,7 +15,7 @@ if [ "$CURRENT" == "blue" ]; then
     HEALTH_CHECK() {
         local retries=0
         until [ $retries -ge 3 ]; do
-            if curl --connect-timeout 3 --max-time 3 -f http://15.165.140.8/health; then
+            if curl --connect-timeout 3 --max-time 3 -f https://astrania.shop/health; then
                 echo "Green Container 헬스 체크 성공 / 트래픽 전환"
                 return 0
             else
@@ -44,7 +44,7 @@ elif [ "$CURRENT" == "green" ]; then
     HEALTH_CHECK() {
         local retries=0
         until [ $retries -ge 3 ]; do
-            if curl --connect-timeout 3 --max-time 3 -f http://15.165.140.8/health; then
+            if curl --connect-timeout 3 --max-time 3 -f https://astrania.shop/health; then
                 echo "Blue Container 헬스 체크 성공 / 트래픽 전환"
                 return 0
             else
