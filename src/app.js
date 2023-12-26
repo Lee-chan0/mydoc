@@ -11,7 +11,7 @@ app.use("/", [userRouter]);
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("docker TEST1234235");
+  res.send("docker TESTddddd");
 });
 
 // 헬스 체크 엔드포인트 추가
