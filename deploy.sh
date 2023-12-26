@@ -15,7 +15,7 @@ if [ "$CURRENT" == "blue" ]; then
     HEALTH_CHECK() {
         local retries=0
         until [ $retries -ge 3 ]; do
-            if curl --connect-timeout 3 --max-time 3 -f http://3.34.113.25/health; then
+            if curl --connect-timeout 3 --max-time 3 -f http://15.165.140.8/health; then
                 echo "Green Container 헬스 체크 성공 / 트래픽 전환"
                 return 0
             else
@@ -44,7 +44,7 @@ elif [ "$CURRENT" == "green" ]; then
     HEALTH_CHECK() {
         local retries=0
         until [ $retries -ge 3 ]; do
-            if curl --connect-timeout 3 --max-time 3 -f http://3.34.113.25/health; then
+            if curl --connect-timeout 3 --max-time 3 -f http://15.165.140.8/health; then
                 echo "Blue Container 헬스 체크 성공 / 트래픽 전환"
                 return 0
             else
