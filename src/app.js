@@ -2,16 +2,17 @@ import express from "express";
 import userRouter from "./routes/users.js";
 import { v4 as uuidv4 } from "uuid";
 import os from 'os';
-
+import bodyParser from "body-parser";
 const app = express();
 let id = uuidv4();
 const PORT = 3000;
 
-app.use("/", [userRouter]);
+
 app.use(express.json());
+app.use("/", [userRouter]);
 
 app.get("/", (req, res) => {
-  res.send("please...");
+  res.send("last TEST");
 });
 
 // 헬스 체크 엔드포인트 추가

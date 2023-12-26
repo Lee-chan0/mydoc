@@ -12,4 +12,16 @@ router.get('/userinfo', async(req, res, next) => {
     return res.status(201).json({data : userinfo})
 })
 
+router.post('/userinfo', async(req, res, next) => {
+    const {username} = req.body;
+    console.log(username);
+
+    await prisma.users.create({
+        data : {
+            username : username
+        }
+    })
+    return res.status(201).json({msg : "good"});
+})
+
 export default router;
