@@ -1,2 +1,0 @@
-REPOSITORY=/home/ubuntu
-cd $REPOSITORY
